@@ -2,4 +2,6 @@
   <h3><%= msg.user%></h3>
   <p><%= msg.text%></p>
   <p><%= msg.added%></p>
+  <p>ID: <%= msg.id %></p>
+  <a href=<%=`messages/${msg.id}`%>>Details</a>
 </li>

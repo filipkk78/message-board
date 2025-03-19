@@ -1,8 +1,9 @@
-li {
+li,
+section {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  border: 3px solid black;
+  border: 3px solid rgb(0, 255, 191);
   width: 40%;
   padding: 10px;
   margin: 10px 0px;
