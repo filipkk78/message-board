@@ -12,7 +12,16 @@ async function getMessageById(desiredId) {
   return rows[0];
 }
 
+async function addMessage(author, content) {
+  await pool.query(
+    "INSERT INTO messages (author, content) VALUES (($1), ($2))",
+    [author, content]
+  );
+  return;
+}
+
 module.exports = {
   getAllMessages,
   getMessageById,
+  addMessage,
 };

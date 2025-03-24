@@ -17,21 +17,16 @@ const { Router } = require("express");
 const express = require("express");
 const { getMessages } = require("../controllers/getMessages.js");
 const { searchMessages } = require("../controllers/searchMessages.js");
+const { renderForm } = require("../controllers/renderForm.js");
+const { submitMessage } = require("../controllers/submitMessage.js");
+const { render } = require("ejs");
 
 const indexRouter = Router();
 indexRouter.use(express.urlencoded({ extended: true }));
 
 indexRouter.get("/", getMessages);
 indexRouter.get("/messages/:messageId", searchMessages);
-indexRouter.get("/new", (req, res) => res.render("form"));
-indexRouter.post("/new", (req, res) => {
-  messages.push({
-    id: messages.length + 1,
-    text: req.body.messageText,
-    user: req.body.messageUser,
-    added: new Date(),
-  });
-  res.redirect("/");
-});
+indexRouter.get("/new", renderForm);
+indexRouter.post("/new", submitMessage);
 
 module.exports = indexRouter;
