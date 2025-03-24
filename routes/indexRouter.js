@@ -15,11 +15,12 @@ const messages = [
 
 const { Router } = require("express");
 const express = require("express");
+const { getMessages } = require("../controllers/getMessages.js");
 
 const indexRouter = Router();
 indexRouter.use(express.urlencoded({ extended: true }));
 
-indexRouter.get("/", (req, res) => res.render("index", { messages: messages }));
+indexRouter.get("/", getMessages);
 indexRouter.get("/messages/:messageId", (req, res) => {
   const { messageId } = req.params;
   const message = messages[messageId - 1];
