@@ -16,21 +16,13 @@ const messages = [
 const { Router } = require("express");
 const express = require("express");
 const { getMessages } = require("../controllers/getMessages.js");
+const { searchMessages } = require("../controllers/searchMessages.js");
 
 const indexRouter = Router();
 indexRouter.use(express.urlencoded({ extended: true }));
 
 indexRouter.get("/", getMessages);
-indexRouter.get("/messages/:messageId", (req, res) => {
-  const { messageId } = req.params;
-  const message = messages[messageId - 1];
-  if (!message) {
-    res.send("Message with this id hasn't been found");
-  } else {
-    res.render("details", { msg: message });
-  }
-  return;
-});
+indexRouter.get("/messages/:messageId", searchMessages);
 indexRouter.get("/new", (req, res) => res.render("form"));
 indexRouter.post("/new", (req, res) => {
   messages.push({
